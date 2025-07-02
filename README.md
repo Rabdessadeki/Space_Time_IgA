@@ -2,7 +2,8 @@
 # Space-Time IgA Solver 
 # -----------------------------------------------
 
-# Install Simplines: https://github.com/Bahari95/simplines
+# First install Simplines (a minimal Psydac-based IGA library)
+# Install: https://github.com/Bahari95/simplines
 
 # References:
 # [1] Space-Time Isogeometric Analysis of Parabolic Evolution Equations  
