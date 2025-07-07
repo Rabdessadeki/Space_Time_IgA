@@ -1,4 +1,12 @@
-# Space_Time_IgA
-# Some references
-# [Space-Time Isogeometric Analysis of Parabolic Evolution Equations](https://www.researchgate.net/publication/281607658_Space-Time_Isogeometric_Analysis_of_Parabolic_Evolution_Equations)
-# https://www.researchgate.net/publication/327904128_Space-Time_Least-Squares_Isogeometric_Method  
+# -----------------------------------------------
+# Space-Time IgA Solver 
+# -----------------------------------------------
+
+# First install Simplines (a minimal Psydac-based IGA library)
+# Install: https://github.com/Bahari95/simplines
+
+# References:
+# [1] Space-Time Isogeometric Analysis of Parabolic Evolution Equations  
+#     https://www.researchgate.net/publication/281607658  
+# [2] Space-Time Least-Squares Isogeometric Method  
+#     https://www.researchgate.net/publication/327904128
