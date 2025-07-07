@@ -18,7 +18,8 @@ assemble_rhs_GEOM    = compile_kernel(assemble_vector_un_ex01_without_ddm, arity
 assemble_norm_l2     = compile_kernel(assemble_norm_ex01, arity=1)
 
 #..
-from   core.plot                    import plotddm_result, plot_Solution, plot_surface_solution
+from   core.plot                    import plotddm_result, plot_Solution
+from   core.plot                    import plot_Mesh, plot_surface_solution
 
 from   scipy.sparse                 import kron
 from   scipy.sparse                 import csr_matrix
@@ -39,7 +40,7 @@ class GENARAL(object):
 		# ++++
 		stiffness           = assemble_stiffness2D(V, fields = [u11_mpH, u12_mpH] )
 	
-		stiffness          = apply_dirichlet(V, stiffness, dirichlet = [[True, False],[True, True]])
+		stiffness          = apply_dirichlet(V, stiffness, dirichlet = [[True, True],[True, False]])
 		
 		# ...
 		M                  = stiffness.tosparse()
@@ -57,7 +58,7 @@ class GENARAL(object):
 		rhs               = StencilVector(V.vector_space)
 		rhs               = assemble_rhs_GEOM( V, fields = [u11_mpH, u12_mpH, u_d], out = rhs )
 		
-		rhs               = apply_dirichlet(V, rhs, dirichlet = [[True ,False],[True, True]])
+		rhs               = apply_dirichlet(V, rhs, dirichlet = [[True ,True],[True, False]])
 		x_d		   = u_d.toarray().reshape(V.nbasis)
 		b                 = rhs.toarray()
 		# ...
@@ -76,23 +77,25 @@ class GENARAL(object):
 
 degree      = 2  # fixed by parameterization for now
 quad_degree = degree + 1
-NRefine     = 5# nelements refined NRefine times 
+NRefine     = 2# nelements refined NRefine times 
 
 #---------------------------------------- 
 #..... Geometry parameterization
 #----------------------------------------
 #.. test 0
-#g         = ['x*sin(pi*y)'] Dirichlet at x = 1  # non vanishing and all Dirichelt homo
+#g         = ['x*sin(pi*y)'] #Dirichlet at x = 1  # non vanishing and all Dirichelt homo
 #.. test 1
 g         = [' x**2*y*(1 - y)'] #Neumann at x =1 # non vanishing and all Dirichelt homo
 
-
+#g         = ['sin(pi*y)*sin(pi*x)']
 #----------------------------------------
 #..... Parameterization from 16*16 elements
 #----------------------------------------
 # Quart annulus
+
 #geometry  = 'fields/quart_annulus.xml'
 # Half annulus
+
 geometry  = 'fields/annulus.xml'
 # Circle
 #geometry = 'fields/circle.xml'
@@ -144,5 +147,5 @@ u, x, l2_norm, H1_norm = P1.solve(u_d)
 print('L^2-error ={} -----> H^1-error = -------------->{}'.format(f"{l2_norm:.2e}",  f"{H1_norm:.2e}" ))
 plot_Solution(nbpts, x, V_0, xmp1, ymp1)
 plot_surface_solution(nbpts, x, V_0, xmp1, ymp1, U_ex = u_exact)
-
+plot_Mesh(nbpts, V_0,  xmp1, ymp1)
 

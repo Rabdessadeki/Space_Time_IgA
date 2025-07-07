@@ -192,6 +192,7 @@ def assemble_vector_un_ex01_without_ddm(ne1, ne2, p1, p2,
                     lvalues_udy[g1, g2]  = (F1x * udy - F1y*udx)
                     lvalues_udy[g1, g2] /= J_mat
                     #.. Test 0
+                    #f = 2*pi**2*sin(pi*y)*sin(pi*x)
                     
                     #f = pi**2*x*sin(pi*y) #  Non vanishing Dirichlet at x = 1
                     # 
@@ -329,11 +330,12 @@ def assemble_norm_ex01(ne1, ne2, p1, p2, spans_1, spans_2,  basis_1, basis_2,  w
                     sy    = lvalues_uy[g1,g2]
                    
                     #... Test 0
-                    #f    = sin(2.*pi*x)*sin(2.*pi*y)
-                    #fx   = 2.*pi*cos(2.*pi*x)*sin(2.*pi*y)
-                    #fy   = 2.*pi*sin(2.*pi*x)*cos(2.*pi*y)
+                    #f    = sin(pi*x)*sin(pi*y)
+                    #fx   = pi*cos(pi*x)*sin(pi*y)
+                    #fy   = pi*sin(pi*x)*cos(pi*y)
                     
                     # ... Test 1                    
+                    
                     #f    = x*sin(pi*y)
                     #fx   = sin(pi*y)
                     #fy   = pi*x*cos(pi*y)
